@@ -14,35 +14,71 @@
 			</div>
 
 			<div class="contato-links">
-				<a class="card contato-link" href="mailto:seu-email@exemplo.com">
+				<a class="card contato-link" href="mailto:felipefonseca2006@gmail.com">
 					<i class="bi bi-envelope"></i><span>E-mail</span>
+					<small>felipefonseca2006@<wbr>gmail.com</small>
 				</a>
-				<a class="card contato-link" href="https://wa.me/5531900000000" target="_blank" rel="noopener">
+				<a class="card contato-link" href="https://wa.me/5531999667897" target="_blank" rel="noopener">
 					<i class="bi bi-whatsapp"></i><span>WhatsApp</span>
+					<small>+55 31 99966-7897</small>
 				</a>
-				<a class="card contato-link" href="https://www.linkedin.com/" target="_blank" rel="noopener">
+				<a class="card contato-link" href="https://www.linkedin.com/in/felipe-fonseca-31924b374" target="_blank" rel="noopener">
 					<i class="bi bi-linkedin"></i><span>LinkedIn</span>
+					<small>felipe-fonseca</small>
 				</a>
 				<a class="card contato-link" href="https://github.com/FelipeFonseca2" target="_blank" rel="noopener">
 					<i class="bi bi-github"></i><span>GitHub</span>
+					<small>FelipeFonseca2</small>
+				</a>
+				<a class="card contato-link" href="https://www.instagram.com/f_c_fonseca" target="_blank" rel="noopener">
+					<i class="bi bi-instagram"></i><span>Instagram</span>
+					<small>@f_c_fonseca</small>
 				</a>
 			</div>
 
-			<form class="card contato-form" th:action="@{/contato}" method="post">
-				<p class="aviso" th:if="${aviso}" th:text="${aviso}" role="status"></p>
-				<div class="campo">
+			<form class="card contato-form" th:action="@{/contato}" th:object="${contatoForm}" method="post" novalidate>
+				<h3>Envie uma mensagem</h3>
+
+				<p class="alerta alerta-sucesso" th:if="${sucesso}" role="status">
+					<i class="bi bi-check-circle"></i> <span th:text="${sucesso}"></span>
+				</p>
+				<p class="alerta alerta-erro" th:if="${erro}" role="alert">
+					<i class="bi bi-exclamation-triangle"></i> <span th:text="${erro}"></span>
+				</p>
+
+				<div class="campo" th:classappend="${#fields.hasErrors('nome')} ? 'invalido'">
 					<label for="nome">Nome</label>
-					<input id="nome" name="nome" type="text" autocomplete="name" required>
+					<input id="nome" type="text" th:field="*{nome}" autocomplete="name" required maxlength="100"
+						aria-describedby="nome-erro">
+					<p id="nome-erro" class="campo-erro"><span th:errors="*{nome}"></span></p>
 				</div>
-				<div class="campo">
+
+				<div class="campo" th:classappend="${#fields.hasErrors('email')} ? 'invalido'">
 					<label for="email">E-mail</label>
-					<input id="email" name="email" type="email" autocomplete="email" required>
+					<input id="email" type="email" th:field="*{email}" autocomplete="email" required maxlength="254"
+						aria-describedby="email-erro">
+					<p id="email-erro" class="campo-erro"><span th:errors="*{email}"></span></p>
 				</div>
-				<div class="campo">
+
+				<div class="campo" th:classappend="${#fields.hasErrors('mensagem')} ? 'invalido'">
 					<label for="mensagem">Mensagem</label>
-					<textarea id="mensagem" name="mensagem" rows="5" required></textarea>
+					<textarea id="mensagem" th:field="*{mensagem}" rows="6" required minlength="10" maxlength="2000"
+						aria-describedby="mensagem-erro mensagem-contador"></textarea>
+					<div class="campo-rodape">
+						<p id="mensagem-erro" class="campo-erro"><span th:errors="*{mensagem}"></span></p>
+						<span id="mensagem-contador" class="contador">0/2000</span>
+					</div>
 				</div>
-				<button class="btn btn-primary" type="submit"><i class="bi bi-send"></i> Enviar</button>
+
+				<!-- Honeypot: escondido de pessoas, preenchido por bots -->
+				<div class="honeypot" aria-hidden="true">
+					<label for="website">Website</label>
+					<input id="website" type="text" th:field="*{website}" tabindex="-1" autocomplete="off">
+				</div>
+
+				<button class="btn btn-primary" type="submit">
+					<i class="bi bi-send"></i> <span>Enviar mensagem</span>
+				</button>
 			</form>
 		</section>
 	</main>

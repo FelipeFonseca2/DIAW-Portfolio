@@ -1,0 +1,38 @@
+[
+  {
+    "nome": "PySnake",
+    "contexto": "Introdução a Algoritmos · PUC Minas",
+    "descricao": "Jogo da cobrinha desenvolvido em dupla como projeto final da disciplina. Tem sprites, pontuação, recorde e ranking das 5 melhores partidas salvo em arquivo, telas de vitória e game over e 12 testes unitários da lógica do jogo.",
+    "tecnologias": ["Python", "Pygame", "pytest"],
+    "repositorioUrl": "https://github.com/FelipeFonseca2/IntroAlgs_pygame_template",
+    "imagemUrl": null,
+    "data": "2026-06"
+  },
+  {
+    "nome": "Consulta de Candidatos TSE",
+    "contexto": "Desenvolvimento de Interações e Aplicações Web · PUC Minas",
+    "descricao": "Aplicação web que carrega os dados abertos do TSE sobre os candidatos de 2026 em Minas Gerais e permite filtrar o perfil dos candidatos por gênero, escolaridade e faixa etária.",
+    "tecnologias": ["Java", "Spring Boot", "Thymeleaf", "OpenCSV", "CSS"],
+    "repositorioUrl": "https://github.com/FelipeFonseca2/DIAW-Prova-01",
+    "imagemUrl": "/img/projetos/candidatos-tse.png",
+    "data": "2026-09"
+  },
+  {
+    "nome": "Sistema de Atendimentos Veterinários",
+    "contexto": "Atividade prática · PUC Minas",
+    "descricao": "Aplicação de console para gerenciar os atendimentos de uma clínica veterinária: cadastro de atendimentos, associação de veterinários e salas, busca por status e finalização de atendimentos.",
+    "tecnologias": ["Java", "POO"],
+    "repositorioUrl": "https://github.com/FelipeFonseca2/AtividadePratica1",
+    "imagemUrl": "/img/projetos/atendimentos-veterinarios.png",
+    "data": "2026-10"
+  },
+  {
+    "nome": "Portfólio Profissional",
+    "contexto": "Desenvolvimento de Interações e Aplicações Web · PUC Minas",
+    "descricao": "Este site: portfólio bilíngue com linha do tempo de projetos, experiências e formulário de contato com envio de e-mail, renderizado no servidor com Spring Boot.",
+    "tecnologias": ["Java", "Spring Boot", "Thymeleaf", "JavaScript", "CSS", "Resend"],
+    "repositorioUrl": "https://github.com/FelipeFonseca2/DIAW-Portfolio",
+    "imagemUrl": "/img/projetos/portfolio.png",
+    "data": "2026-10"
+  }
+]

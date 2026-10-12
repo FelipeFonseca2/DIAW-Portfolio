@@ -13,27 +13,42 @@
 				<p class="section-sub">Linha do tempo, do mais antigo ao mais recente.</p>
 			</div>
 
+			<div class="filtros" role="group" aria-label="Filtrar projetos por tecnologia">
+				<button type="button" class="filtro" data-filtro="" aria-pressed="true">Todos</button>
+				<button type="button" class="filtro" th:each="tec : ${tecnologias}" th:data-filtro="${tec}"
+					aria-pressed="false" th:text="${tec}">Java</button>
+			</div>
+			<p class="filtro-status" aria-live="polite"
+				th:text="${#lists.size(projetos)} + ' projetos'">4 projetos</p>
+
 			<ol class="timeline">
-				<li class="timeline-item" th:each="projeto : ${projetos}">
-					<span class="timeline-date"
-						th:text="${#temporals.format(projeto.data().atDay(1), 'MM/yyyy')}">01/2026</span>
+				<li class="timeline-item reveal" th:each="projeto : ${projetos}"
+					th:data-tecnologias="${#strings.listJoin(projeto.tecnologias(), '|')}">
+					<time class="timeline-date" th:datetime="${projeto.data()}"
+						th:text="${projeto.mesAno()}">jan. 2026</time>
 					<article class="card projeto">
 						<div class="projeto-media">
-							<img th:if="${projeto.imagemUrl() != null}" th:src="${projeto.imagemUrl()}"
-								th:alt="'Demonstração de ' + ${projeto.nome()}" loading="lazy">
+							<button th:if="${projeto.imagemUrl() != null}" type="button" class="media-zoom"
+								th:aria-label="'Ampliar imagem de ' + ${projeto.nome()}">
+								<img th:src="@{${projeto.imagemUrl()}}"
+									th:alt="'Tela do projeto ' + ${projeto.nome()}" loading="lazy">
+							</button>
 							<div th:unless="${projeto.imagemUrl() != null}" class="media-placeholder">
 								<i class="bi bi-image"></i>
-								<span>Imagem / GIF do projeto</span>
+								<span>Imagem em breve</span>
 							</div>
 						</div>
 						<div class="projeto-body">
-							<h3 th:text="${projeto.nome()}">Nome do projeto</h3>
+							<div>
+								<h3 th:text="${projeto.nome()}">Nome do projeto</h3>
+								<p class="projeto-contexto" th:text="${projeto.contexto()}">Disciplina</p>
+							</div>
 							<p th:text="${projeto.descricao()}">Descrição</p>
 							<ul class="tags" aria-label="Tecnologias utilizadas">
 								<li th:each="tec : ${projeto.tecnologias()}" th:text="${tec}">Java</li>
 							</ul>
 							<a class="link" th:href="${projeto.repositorioUrl()}" target="_blank" rel="noopener">
-								<i class="bi bi-github"></i> Repositório
+								<i class="bi bi-github"></i> Ver repositório
 							</a>
 						</div>
 					</article>
@@ -41,6 +56,11 @@
 			</ol>
 		</section>
 	</main>
+
+	<dialog class="lightbox" aria-label="Imagem ampliada">
+		<button type="button" class="lightbox-fechar" aria-label="Fechar"><i class="bi bi-x-lg"></i></button>
+		<img src="" alt="">
+	</dialog>
 
 	<footer th:replace="~{fragments/layout :: footer}"></footer>
 </body>

@@ -6,6 +6,12 @@
       "runtimeExecutable": "powershell",
       "runtimeArgs": ["-NoProfile", "-Command", "Set-Location -LiteralPath 'C:\\Users\\felip\\OneDrive\\Documentos\\PUC\\VS Code\\DIAW\\DIAW-Portfolio'; .\\mvnw.cmd spring-boot:run"],
       "port": 8080
+    },
+    {
+      "name": "portfolio-8081",
+      "runtimeExecutable": "powershell",
+      "runtimeArgs": ["-NoProfile", "-Command", "Set-Location -LiteralPath 'C:\\Users\\felip\\OneDrive\\Documentos\\PUC\\VS Code\\DIAW\\DIAW-Portfolio'; $env:SERVER_PORT='8081'; .\\mvnw.cmd spring-boot:run"],
+      "port": 8081
     }
   ]
 }

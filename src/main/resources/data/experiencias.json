@@ -1,0 +1,56 @@
+[
+  {
+    "tipo": "FORMACAO",
+    "instituicao": "PUC Minas · Coração Eucarístico",
+    "cargo": "Graduação em Engenharia de Software",
+    "inicio": "2025-02",
+    "fim": null,
+    "descricao": "Ingresso em 2025, cursando o 4º período. Formação em programação, estruturas de dados, programação orientada a objetos, MIPS Assembly e desenvolvimento web.",
+    "competencias": ["C", "C++", "C#", "Java", "Python", "Estruturas de Dados", "POO", "MIPS Assembly"]
+  },
+  {
+    "tipo": "FORMACAO",
+    "instituicao": "Colégio Santo Agostinho",
+    "cargo": "Ensino médio completo",
+    "inicio": null,
+    "fim": null,
+    "descricao": "Educação básica concluída antes do ingresso na PUC Minas.",
+    "competencias": []
+  },
+  {
+    "tipo": "PROJETO_ACADEMICO",
+    "instituicao": "PUC Minas · Introdução a Algoritmos",
+    "cargo": "Desenvolvedor do jogo PySnake (em dupla)",
+    "inicio": "2026-05",
+    "fim": "2026-06",
+    "descricao": "Planejamento, implementação e testes de um jogo Snake em Python, da proposta inicial à entrega final, com divisão de tarefas e versionamento no GitHub.",
+    "competencias": ["Python", "Pygame", "pytest", "Trabalho em equipe"]
+  },
+  {
+    "tipo": "PROJETO_ACADEMICO",
+    "instituicao": "PUC Minas · Desenvolvimento de Interações e Aplicações Web",
+    "cargo": "Desenvolvedor de aplicações web",
+    "inicio": "2026-08",
+    "fim": null,
+    "descricao": "Desenvolvimento de aplicações web renderizadas no servidor com Spring Boot e Thymeleaf, como a consulta de candidatos com dados abertos do TSE e este portfólio.",
+    "competencias": ["Java", "Spring Boot", "Thymeleaf", "HTML", "CSS"]
+  },
+  {
+    "tipo": "CURSO",
+    "instituicao": "Curso presencial",
+    "cargo": "Curso júnior de jogos e robótica",
+    "inicio": null,
+    "fim": null,
+    "descricao": "Curso presencial júnior de desenvolvimento de jogos e robótica.",
+    "competencias": ["Jogos", "Robótica"]
+  },
+  {
+    "tipo": "CURSO",
+    "instituicao": "Curso online",
+    "cargo": "Excel — nível intermediário",
+    "inicio": null,
+    "fim": null,
+    "descricao": "Curso online de Excel em nível intermediário.",
+    "competencias": ["Excel"]
+  }
+]

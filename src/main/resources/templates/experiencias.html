@@ -10,21 +10,33 @@
 		<section>
 			<div class="section-head">
 				<h2>Experiências</h2>
-				<p class="section-sub">Experiências profissionais, estágios, freelas, open source e eventos técnicos.</p>
+				<p class="section-sub">Formação acadêmica, projetos desenvolvidos na graduação e cursos.</p>
 			</div>
 
-			<div class="experiencias">
-				<article class="card experiencia" th:each="exp : ${experiencias}">
-					<div class="experiencia-head">
-						<div>
-							<h3 th:text="${exp.cargo()}">Cargo</h3>
-							<p class="experiencia-org" th:text="${exp.instituicao()}">Instituição</p>
+			<section class="grupo-experiencia" th:each="grupo : ${grupos}"
+				th:aria-labelledby="'grupo-' + ${grupo.key.name()}">
+				<h3 class="grupo-titulo" th:id="'grupo-' + ${grupo.key.name()}">
+					<i class="bi" th:classappend="${grupo.key.icone}"></i>
+					<span th:text="${grupo.key.titulo}">Tipo</span>
+				</h3>
+
+				<div class="experiencias">
+					<article class="card experiencia reveal" th:each="exp : ${grupo.value}">
+						<div class="experiencia-head">
+							<div>
+								<h4 th:text="${exp.cargo()}">Cargo</h4>
+								<p class="experiencia-org" th:text="${exp.instituicao()}">Instituição</p>
+							</div>
+							<span class="badge" th:if="${exp.periodo() != null}" th:classappend="${exp.emAndamento()} ? 'badge-atual'"
+								th:text="${exp.periodo()}">2026 – atual</span>
 						</div>
-						<span class="badge" th:text="${exp.periodo()}">2026</span>
-					</div>
-					<p th:text="${exp.descricao()}">Descrição</p>
-				</article>
-			</div>
+						<p th:text="${exp.descricao()}">Descrição</p>
+						<ul class="tags" th:if="${!#lists.isEmpty(exp.competencias())}" aria-label="Competências">
+							<li th:each="comp : ${exp.competencias()}" th:text="${comp}">Java</li>
+						</ul>
+					</article>
+				</div>
+			</section>
 		</section>
 	</main>
 

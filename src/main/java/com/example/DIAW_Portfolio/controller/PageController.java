@@ -3,8 +3,6 @@ package com.example.DIAW_Portfolio.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.DIAW_Portfolio.service.PortfolioService;
 
@@ -17,6 +15,7 @@ public class PageController {
 		this.portfolioService = portfolioService;
 	}
 
+	// O idioma (?lang=pt|en) é tratado pelo LocaleChangeInterceptor em WebConfig.
 	@GetMapping("/")
 	public String sobre(Model model) {
 		model.addAttribute("pagina", "sobre");
@@ -27,27 +26,14 @@ public class PageController {
 	public String projetos(Model model) {
 		model.addAttribute("pagina", "projetos");
 		model.addAttribute("projetos", portfolioService.listarProjetos());
+		model.addAttribute("tecnologias", portfolioService.listarTecnologias());
 		return "projetos";
 	}
 
 	@GetMapping("/experiencias")
 	public String experiencias(Model model) {
 		model.addAttribute("pagina", "experiencias");
-		model.addAttribute("experiencias", portfolioService.listarExperiencias());
+		model.addAttribute("grupos", portfolioService.listarExperienciasPorTipo());
 		return "experiencias";
-	}
-
-	@GetMapping("/contato")
-	public String contato(Model model) {
-		model.addAttribute("pagina", "contato");
-		return "contato";
-	}
-
-	// O envio real por e-mail será implementado na próxima sprint.
-	@PostMapping("/contato")
-	public String enviarContato(RedirectAttributes redirectAttributes) {
-		redirectAttributes.addFlashAttribute("aviso",
-				"O envio de mensagens ainda está em desenvolvimento. Use os links de contato acima.");
-		return "redirect:/contato";
 	}
 }

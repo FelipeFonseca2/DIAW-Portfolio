@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org"
+	th:with="ingles=${#locale.language == 'en'}" th:lang="${ingles} ? 'en' : 'pt-BR'">
 
-<head th:replace="~{fragments/layout :: head('Sobre Mim')}"></head>
+<head th:replace="~{fragments/layout :: head(#{sobre.titulo})}"></head>
 
 <body>
 	<header th:replace="~{fragments/layout :: header}"></header>
@@ -9,55 +10,76 @@
 	<main class="container">
 		<section class="hero">
 			<div class="hero-text">
-				<p class="eyebrow">Olá, eu sou</p>
+				<p class="eyebrow" th:text="#{sobre.saudacao}">Olá, eu sou</p>
 				<h1>Felipe Fonseca</h1>
-				<p class="hero-role">Estudante de Engenharia de Software · PUC Minas</p>
+				<p class="hero-role" th:text="#{sobre.cargo}">Estudante de Engenharia de Software · PUC Minas</p>
 				<div class="hero-actions">
-					<a class="btn btn-primary" th:href="@{/projetos}">Ver projetos</a>
-					<a class="btn btn-outline" th:href="@{/contato}">Entrar em contato</a>
+					<a class="btn btn-primary" th:href="@{/projetos}" th:text="#{sobre.verProjetos}">Ver projetos</a>
+					<a class="btn btn-outline" th:href="@{/contato}" th:text="#{sobre.contato}">Entrar em contato</a>
 				</div>
 			</div>
-			<div class="hero-photo" aria-hidden="true">
-				<i class="bi bi-person"></i>
-			</div>
+			<img class="hero-photo" th:src="@{/img/felipe.webp}" th:alt="#{sobre.foto}" width="220" height="220">
 		</section>
 
 		<section class="sobre">
 			<div class="section-head">
-				<h2>Sobre Mim</h2>
-				<div class="lang-switch" role="tablist" aria-label="Idioma da apresentação">
-					<button type="button" role="tab" data-lang="pt" aria-selected="true">PT</button>
-					<button type="button" role="tab" data-lang="en" aria-selected="false">EN</button>
-				</div>
+				<h2 th:text="#{sobre.titulo}">Sobre Mim</h2>
+				<nav class="lang-switch" th:aria-label="#{sobre.idioma}">
+					<a th:href="@{/(lang=pt)}" hreflang="pt-BR" lang="pt-BR"
+						th:attr="aria-current=${!ingles} ? 'true'">PT</a>
+					<a th:href="@{/(lang=en)}" hreflang="en" lang="en"
+						th:attr="aria-current=${ingles} ? 'true'">EN</a>
+				</nav>
 			</div>
 
-			<article class="card bio" data-lang-content="pt" lang="pt-BR">
-				<p>Texto de apresentação em português: formação, área de atuação, interesses e objetivos profissionais.</p>
-			</article>
-			<article class="card bio" data-lang-content="en" lang="en" hidden>
-				<p>Introduction text in English: education, field of work, interests and professional goals.</p>
+			<article class="card bio">
+				<p th:text="#{sobre.bio.1}">Bio</p>
+				<p th:text="#{sobre.bio.2}">Bio</p>
 			</article>
 
 			<div class="info-grid">
 				<div class="card info">
 					<i class="bi bi-mortarboard"></i>
-					<h3>Formação</h3>
-					<p>Engenharia de Software — PUC Minas</p>
+					<h3 th:text="#{sobre.formacao}">Formação</h3>
+					<p th:text="#{sobre.formacao.texto}"></p>
 				</div>
 				<div class="card info">
 					<i class="bi bi-code-slash"></i>
-					<h3>Área de atuação</h3>
-					<p>Desenvolvimento de software</p>
+					<h3 th:text="#{sobre.area}">Área de atuação</h3>
+					<p th:text="#{sobre.area.texto}"></p>
 				</div>
 				<div class="card info">
 					<i class="bi bi-stars"></i>
-					<h3>Interesses</h3>
-					<p>Interesses profissionais</p>
+					<h3 th:text="#{sobre.interesses}">Interesses</h3>
+					<p th:text="#{sobre.interesses.texto}"></p>
 				</div>
 				<div class="card info">
 					<i class="bi bi-flag"></i>
-					<h3>Objetivos</h3>
-					<p>Objetivos profissionais</p>
+					<h3 th:text="#{sobre.objetivos}">Objetivo</h3>
+					<p th:text="#{sobre.objetivos.texto}"></p>
+				</div>
+				<div class="card info">
+					<i class="bi bi-translate"></i>
+					<h3 th:text="#{sobre.idiomas}">Idiomas</h3>
+					<p th:text="#{sobre.idiomas.texto}"></p>
+				</div>
+				<div class="card info">
+					<i class="bi bi-clock"></i>
+					<h3 th:text="#{sobre.disponibilidade}">Disponibilidade</h3>
+					<p th:text="#{sobre.disponibilidade.texto}"></p>
+				</div>
+			</div>
+
+			<div class="card habilidades">
+				<h3 th:text="#{sobre.habilidades}">Habilidades e Competências</h3>
+				<div class="habilidades-grid">
+					<div th:each="grupo : ${ {'linguagens', 'web', 'ferramentas', 'conceitos', 'competencias'} }">
+						<h4 th:text="#{${'sobre.hab.' + grupo}}">Grupo</h4>
+						<ul class="tags">
+							<li th:each="item : ${#strings.arraySplit(#messages.msg('sobre.hab.' + grupo + '.itens'), ';')}"
+								th:text="${item}">Item</li>
+						</ul>
+					</div>
 				</div>
 			</div>
 		</section>
