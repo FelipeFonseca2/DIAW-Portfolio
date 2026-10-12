@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{fragments/layout :: head('Contato')}"></head>
+
+<body>
+	<header th:replace="~{fragments/layout :: header}"></header>
+
+	<main class="container">
+		<section>
+			<div class="section-head">
+				<h2>Contato</h2>
+				<p class="section-sub">Fale comigo pelos canais abaixo ou envie uma mensagem.</p>
+			</div>
+
+			<div class="contato-links">
+				<a class="card contato-link" href="mailto:seu-email@exemplo.com">
+					<i class="bi bi-envelope"></i><span>E-mail</span>
+				</a>
+				<a class="card contato-link" href="https://wa.me/5531900000000" target="_blank" rel="noopener">
+					<i class="bi bi-whatsapp"></i><span>WhatsApp</span>
+				</a>
+				<a class="card contato-link" href="https://www.linkedin.com/" target="_blank" rel="noopener">
+					<i class="bi bi-linkedin"></i><span>LinkedIn</span>
+				</a>
+				<a class="card contato-link" href="https://github.com/FelipeFonseca2" target="_blank" rel="noopener">
+					<i class="bi bi-github"></i><span>GitHub</span>
+				</a>
+			</div>
+
+			<form class="card contato-form" th:action="@{/contato}" method="post">
+				<p class="aviso" th:if="${aviso}" th:text="${aviso}" role="status"></p>
+				<div class="campo">
+					<label for="nome">Nome</label>
+					<input id="nome" name="nome" type="text" autocomplete="name" required>
+				</div>
+				<div class="campo">
+					<label for="email">E-mail</label>
+					<input id="email" name="email" type="email" autocomplete="email" required>
+				</div>
+				<div class="campo">
+					<label for="mensagem">Mensagem</label>
+					<textarea id="mensagem" name="mensagem" rows="5" required></textarea>
+				</div>
+				<button class="btn btn-primary" type="submit"><i class="bi bi-send"></i> Enviar</button>
+			</form>
+		</section>
+	</main>
+
+	<footer th:replace="~{fragments/layout :: footer}"></footer>
+</body>
+
+</html>

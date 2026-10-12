@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{fragments/layout :: head('Projetos')}"></head>
+
+<body>
+	<header th:replace="~{fragments/layout :: header}"></header>
+
+	<main class="container">
+		<section>
+			<div class="section-head">
+				<h2>Projetos</h2>
+				<p class="section-sub">Linha do tempo, do mais antigo ao mais recente.</p>
+			</div>
+
+			<ol class="timeline">
+				<li class="timeline-item" th:each="projeto : ${projetos}">
+					<span class="timeline-date"
+						th:text="${#temporals.format(projeto.data().atDay(1), 'MM/yyyy')}">01/2026</span>
+					<article class="card projeto">
+						<div class="projeto-media">
+							<img th:if="${projeto.imagemUrl() != null}" th:src="${projeto.imagemUrl()}"
+								th:alt="'Demonstração de ' + ${projeto.nome()}" loading="lazy">
+							<div th:unless="${projeto.imagemUrl() != null}" class="media-placeholder">
+								<i class="bi bi-image"></i>
+								<span>Imagem / GIF do projeto</span>
+							</div>
+						</div>
+						<div class="projeto-body">
+							<h3 th:text="${projeto.nome()}">Nome do projeto</h3>
+							<p th:text="${projeto.descricao()}">Descrição</p>
+							<ul class="tags" aria-label="Tecnologias utilizadas">
+								<li th:each="tec : ${projeto.tecnologias()}" th:text="${tec}">Java</li>
+							</ul>
+							<a class="link" th:href="${projeto.repositorioUrl()}" target="_blank" rel="noopener">
+								<i class="bi bi-github"></i> Repositório
+							</a>
+						</div>
+					</article>
+				</li>
+			</ol>
+		</section>
+	</main>
+
+	<footer th:replace="~{fragments/layout :: footer}"></footer>
+</body>
+
+</html>

@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "portfolio",
+      "runtimeExecutable": "powershell",
+      "runtimeArgs": ["-NoProfile", "-Command", "Set-Location -LiteralPath 'C:\\Users\\felip\\OneDrive\\Documentos\\PUC\\VS Code\\DIAW\\DIAW-Portfolio'; .\\mvnw.cmd spring-boot:run"],
+      "port": 8080
+    }
+  ]
+}

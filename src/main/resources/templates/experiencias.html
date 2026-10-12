@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{fragments/layout :: head('Experiências')}"></head>
+
+<body>
+	<header th:replace="~{fragments/layout :: header}"></header>
+
+	<main class="container">
+		<section>
+			<div class="section-head">
+				<h2>Experiências</h2>
+				<p class="section-sub">Experiências profissionais, estágios, freelas, open source e eventos técnicos.</p>
+			</div>
+
+			<div class="experiencias">
+				<article class="card experiencia" th:each="exp : ${experiencias}">
+					<div class="experiencia-head">
+						<div>
+							<h3 th:text="${exp.cargo()}">Cargo</h3>
+							<p class="experiencia-org" th:text="${exp.instituicao()}">Instituição</p>
+						</div>
+						<span class="badge" th:text="${exp.periodo()}">2026</span>
+					</div>
+					<p th:text="${exp.descricao()}">Descrição</p>
+				</article>
+			</div>
+		</section>
+	</main>
+
+	<footer th:replace="~{fragments/layout :: footer}"></footer>
+</body>
+
+</html>
