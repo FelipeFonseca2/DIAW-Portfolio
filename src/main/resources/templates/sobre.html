@@ -2,12 +2,12 @@
 <html lang="pt-BR" xmlns:th="http://www.thymeleaf.org"
 	th:with="ingles=${#locale.language == 'en'}" th:lang="${ingles} ? 'en' : 'pt-BR'">
 
-<head th:replace="~{fragments/layout :: head(#{sobre.titulo})}"></head>
+<head th:replace="~{fragments/layout :: head(#{sobre.titulo}, #{sobre.meta})}"></head>
 
 <body>
 	<header th:replace="~{fragments/layout :: header}"></header>
 
-	<main class="container">
+	<main id="conteudo" class="container" tabindex="-1">
 		<section class="hero">
 			<div class="hero-text">
 				<p class="eyebrow" th:text="#{sobre.saudacao}">Olá, eu sou</p>

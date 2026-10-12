@@ -890,3 +890,70 @@ img {
 	letter-spacing: .06em;
 	text-transform: uppercase;
 }
+
+/* ===== Acessibilidade ===== */
+.skip-link {
+	position: absolute;
+	top: -100px;
+	left: 16px;
+	z-index: 20;
+	padding: 10px 16px;
+	border-radius: 0 0 10px 10px;
+	background: var(--primary);
+	color: var(--primary-contrast);
+	font-weight: 600;
+	text-decoration: none;
+}
+
+.skip-link:focus {
+	top: 0;
+}
+
+main:focus {
+	outline: none;
+}
+
+/* Âncoras não ficam escondidas atrás do cabeçalho fixo */
+[id] {
+	scroll-margin-top: calc(var(--header-h) + 16px);
+}
+
+/* ===== Projetos: links ===== */
+.projeto-links {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 8px 20px;
+}
+
+/* ===== Rodapé ===== */
+.footer-repo {
+	color: var(--muted);
+}
+
+.footer-repo:hover {
+	color: var(--primary);
+}
+
+/* ===== Página de erro ===== */
+.erro {
+	display: grid;
+	justify-items: start;
+	gap: 12px;
+	padding-block: 96px;
+}
+
+.erro-codigo {
+	color: var(--primary);
+	font-family: var(--font-head);
+	font-size: clamp(4rem, 14vw, 7rem);
+	font-weight: 700;
+	line-height: 1;
+}
+
+.erro h1 {
+	font-size: 2rem;
+}
+
+.erro .section-sub {
+	width: auto;
+}

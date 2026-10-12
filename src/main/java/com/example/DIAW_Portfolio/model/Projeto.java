@@ -8,6 +8,7 @@ import java.util.Locale;
 /**
  * @param imagemUrl caminho da imagem ou GIF do projeto; {@code null} exibe um
  *                  placeholder.
+ * @param siteUrl   endereço do projeto publicado, se houver.
  */
 public record Projeto(
 		String nome,
@@ -15,6 +16,7 @@ public record Projeto(
 		String descricao,
 		List<String> tecnologias,
 		String repositorioUrl,
+		String siteUrl,
 		String imagemUrl,
 		YearMonth data) {
 

@@ -1,0 +1,14 @@
+# Blueprint do Render: https://render.com/docs/blueprint-spec
+services:
+  - type: web
+    name: diaw-portfolio
+    runtime: docker
+    plan: free
+    region: virginia  # região mais próxima do Brasil
+    branch: main
+    autoDeploy: true
+    healthCheckPath: /
+    envVars:
+      # Preenchida no painel do Render (não fica no repositório)
+      - key: RESEND_API_KEY
+        sync: false

@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
 
-<head th:replace="~{fragments/layout :: head('Projetos')}"></head>
+<head th:replace="~{fragments/layout :: head('Projetos', 'Linha do tempo dos projetos de Felipe Fonseca, com tecnologias, repositórios e telas em execução.')}"></head>
 
 <body>
 	<header th:replace="~{fragments/layout :: header}"></header>
 
-	<main class="container">
+	<main id="conteudo" class="container" tabindex="-1">
 		<section>
 			<div class="section-head">
 				<h2>Projetos</h2>
@@ -47,9 +47,15 @@
 							<ul class="tags" aria-label="Tecnologias utilizadas">
 								<li th:each="tec : ${projeto.tecnologias()}" th:text="${tec}">Java</li>
 							</ul>
-							<a class="link" th:href="${projeto.repositorioUrl()}" target="_blank" rel="noopener">
-								<i class="bi bi-github"></i> Ver repositório
-							</a>
+							<div class="projeto-links">
+								<a class="link" th:href="${projeto.repositorioUrl()}" target="_blank" rel="noopener">
+									<i class="bi bi-github"></i> Ver repositório
+								</a>
+								<a class="link" th:if="${projeto.siteUrl() != null}" th:href="${projeto.siteUrl()}"
+									target="_blank" rel="noopener">
+									<i class="bi bi-box-arrow-up-right"></i> Ver site
+								</a>
+							</div>
 						</div>
 					</article>
 				</li>

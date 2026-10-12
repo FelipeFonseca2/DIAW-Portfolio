@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.junit.jupiter.api.Test;
+import org.springframework.core.io.ClassPathResource;
 
 import com.example.DIAW_Portfolio.model.Experiencia;
 import com.example.DIAW_Portfolio.model.Projeto;
@@ -23,6 +24,15 @@ class PortfolioServiceTests {
 
 		assertThat(projetos).isNotEmpty();
 		assertThat(projetos).extracting(Projeto::data).isSorted();
+	}
+
+	@Test
+	void imagensDosProjetosExistem() {
+		assertThat(service.listarProjetos())
+				.filteredOn(p -> p.imagemUrl() != null)
+				.allSatisfy(p -> assertThat(new ClassPathResource("static" + p.imagemUrl()).exists())
+						.as("imagem de %s: %s", p.nome(), p.imagemUrl())
+						.isTrue());
 	}
 
 	@Test

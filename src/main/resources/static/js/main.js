@@ -2,10 +2,26 @@
 const navToggle = document.querySelector(".nav-toggle");
 const nav = document.querySelector(".nav");
 
-navToggle?.addEventListener("click", () => {
-	const aberto = nav.classList.toggle("aberto");
+const alternarMenu = (aberto) => {
+	nav.classList.toggle("aberto", aberto);
 	navToggle.setAttribute("aria-expanded", aberto);
+	navToggle.setAttribute("aria-label", aberto ? "Fechar menu" : "Abrir menu");
 	navToggle.querySelector("i").className = aberto ? "bi bi-x-lg" : "bi bi-list";
+};
+
+navToggle?.addEventListener("click", () => alternarMenu(!nav.classList.contains("aberto")));
+
+// Fecha o menu com Esc ou ao clicar fora dele
+document.addEventListener("keydown", (e) => {
+	if (e.key === "Escape" && nav.classList.contains("aberto")) {
+		alternarMenu(false);
+		navToggle.focus();
+	}
+});
+document.addEventListener("click", (e) => {
+	if (nav.classList.contains("aberto") && !nav.contains(e.target) && !navToggle.contains(e.target)) {
+		alternarMenu(false);
+	}
 });
 
 // Tema claro/escuro
@@ -46,6 +62,12 @@ filtros.forEach((botao) => {
 		const tecnologia = botao.dataset.filtro;
 		filtros.forEach((b) => b.setAttribute("aria-pressed", b === botao));
 
+		// Mantém o filtro na URL para que o link possa ser compartilhado
+		const url = new URL(location.href);
+		if (tecnologia) url.searchParams.set("tecnologia", tecnologia);
+		else url.searchParams.delete("tecnologia");
+		history.replaceState(null, "", url);
+
 		let visiveis = 0;
 		itensTimeline.forEach((item) => {
 			const mostra = !tecnologia || item.dataset.tecnologias.split("|").includes(tecnologia);
@@ -60,6 +82,12 @@ filtros.forEach((botao) => {
 		statusFiltro.textContent = tecnologia ? `${texto} com ${tecnologia}` : texto;
 	});
 });
+
+// Aplica o filtro vindo da URL (ex.: /projetos?tecnologia=Java)
+const filtroInicial = new URLSearchParams(location.search).get("tecnologia");
+if (filtroInicial) {
+	[...filtros].find((b) => b.dataset.filtro === filtroInicial)?.click();
+}
 
 // Projetos: imagem ampliada
 const lightbox = document.querySelector(".lightbox");
@@ -99,6 +127,13 @@ if (formContato) {
 		document.getElementById(`${nome}-erro`).textContent = erro;
 		return !erro;
 	};
+
+	// Erros vindos do servidor: leva o usuário até o formulário e ao primeiro campo inválido
+	const primeiroInvalido = formContato.querySelector(".invalido input, .invalido textarea");
+	if (primeiroInvalido) {
+		formContato.scrollIntoView({ block: "start" });
+		primeiroInvalido.focus({ preventScroll: true });
+	}
 
 	Object.keys(campos).forEach((nome) => {
 		const input = formContato.elements[nome];

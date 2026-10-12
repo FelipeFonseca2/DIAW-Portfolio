@@ -1,11 +1,26 @@
 <!DOCTYPE html>
 <html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
 
-<head th:fragment="head(titulo)">
+<head th:fragment="head(titulo, descricao)">
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="description" content="Portfólio profissional de Felipe Fonseca">
 	<title th:text="${titulo} + ' | Felipe Fonseca'">Felipe Fonseca</title>
+	<meta name="description" th:content="${descricao}">
+	<meta name="author" content="Felipe de Castro Fonseca">
+	<meta name="theme-color" content="#0e121a">
+	<link rel="canonical" th:if="${urlAtual}" th:href="${urlAtual}">
+
+	<!-- Prévia do link em redes sociais e mensageiros -->
+	<meta property="og:type" content="website">
+	<meta property="og:site_name" content="Felipe Fonseca">
+	<meta property="og:title" th:content="${titulo} + ' | Felipe Fonseca'">
+	<meta property="og:description" th:content="${descricao}">
+	<meta property="og:url" th:if="${urlAtual}" th:content="${urlAtual}">
+	<meta property="og:image" th:if="${urlBase}" th:content="${urlBase} + '/img/og-image.jpg'">
+	<meta property="og:image:width" content="1200">
+	<meta property="og:image:height" content="630">
+	<meta name="twitter:card" content="summary_large_image">
+
 	<link rel="icon" th:href="@{/img/favicon.svg}" type="image/svg+xml">
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -25,6 +40,7 @@
 <body>
 
 	<header class="site-header" th:fragment="header">
+		<a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
 		<div class="container header-inner">
 			<a class="logo" th:href="@{/}" aria-label="Página inicial">
 				<span class="logo-mark">FF</span>
@@ -53,7 +69,8 @@
 
 	<footer class="site-footer" th:fragment="footer">
 		<div class="container footer-inner">
-			<p>&copy; <span th:text="${#temporals.format(#temporals.createNow(), 'yyyy')}">2026</span> Felipe Fonseca</p>
+			<p>&copy; <span th:text="${#temporals.format(#temporals.createNow(), 'yyyy')}">2026</span> Felipe Fonseca ·
+				<a class="footer-repo" href="https://github.com/FelipeFonseca2/DIAW-Portfolio" target="_blank" rel="noopener">código-fonte</a></p>
 			<div class="footer-links">
 				<a href="https://github.com/FelipeFonseca2" target="_blank" rel="noopener" aria-label="GitHub"><i class="bi bi-github"></i></a>
 				<a href="https://www.linkedin.com/in/felipe-fonseca-31924b374" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>

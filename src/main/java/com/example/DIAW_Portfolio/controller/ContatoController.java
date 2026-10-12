@@ -22,6 +22,8 @@ import jakarta.validation.Valid;
 public class ContatoController {
 
 	private static final Logger log = LoggerFactory.getLogger(ContatoController.class);
+	// Volta para o formulário para que a mensagem de sucesso/erro fique visível
+	private static final String REDIRECT_FORMULARIO = "redirect:/contato#formulario";
 	private static final String MENSAGEM_SUCESSO = "Mensagem enviada! Obrigado pelo contato, responderei em breve.";
 
 	private final EmailService emailService;
@@ -49,7 +51,7 @@ public class ContatoController {
 		if (form.isBot()) {
 			// Responde como sucesso para não dar pistas ao bot.
 			redirectAttributes.addFlashAttribute("sucesso", MENSAGEM_SUCESSO);
-			return "redirect:/contato";
+			return REDIRECT_FORMULARIO;
 		}
 		if (result.hasErrors()) {
 			return "contato";
@@ -65,6 +67,6 @@ public class ContatoController {
 			redirectAttributes.addFlashAttribute("contatoForm", form);
 		}
 		// Post/Redirect/Get: evita reenvio ao atualizar a página.
-		return "redirect:/contato";
+		return REDIRECT_FORMULARIO;
 	}
 }

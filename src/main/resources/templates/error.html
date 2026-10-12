@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org" th:with="naoEncontrada=${status == 404}">
+
+<head th:replace="~{fragments/layout :: head(${naoEncontrada} ? 'Página não encontrada' : 'Erro', 'Página de erro do portfólio de Felipe Fonseca.')}"></head>
+
+<body>
+	<header th:replace="~{fragments/layout :: header}"></header>
+
+	<main id="conteudo" class="container erro" tabindex="-1">
+		<p class="erro-codigo" th:text="${status}">404</p>
+		<h1 th:text="${naoEncontrada} ? 'Página não encontrada' : 'Algo deu errado'">Página não encontrada</h1>
+		<p class="section-sub" th:text="${naoEncontrada}
+			? 'O endereço acessado não existe ou foi movido.'
+			: 'Ocorreu um erro inesperado. Tente novamente em instantes.'">O endereço acessado não existe.</p>
+		<div class="hero-actions">
+			<a class="btn btn-primary" th:href="@{/}"><i class="bi bi-house"></i> Ir para o início</a>
+			<a class="btn btn-outline" th:href="@{/projetos}">Ver projetos</a>
+		</div>
+	</main>
+
+	<footer th:replace="~{fragments/layout :: footer}"></footer>
+</body>
+
+</html>

@@ -14,7 +14,7 @@
     "descricao": "Aplicação web que carrega os dados abertos do TSE sobre os candidatos de 2026 em Minas Gerais e permite filtrar o perfil dos candidatos por gênero, escolaridade e faixa etária.",
     "tecnologias": ["Java", "Spring Boot", "Thymeleaf", "OpenCSV", "CSS"],
     "repositorioUrl": "https://github.com/FelipeFonseca2/DIAW-Prova-01",
-    "imagemUrl": "/img/projetos/candidatos-tse.png",
+    "imagemUrl": "/img/projetos/candidatos-tse.gif",
     "data": "2026-09"
   },
   {
@@ -23,16 +23,17 @@
     "descricao": "Aplicação de console para gerenciar os atendimentos de uma clínica veterinária: cadastro de atendimentos, associação de veterinários e salas, busca por status e finalização de atendimentos.",
     "tecnologias": ["Java", "POO"],
     "repositorioUrl": "https://github.com/FelipeFonseca2/AtividadePratica1",
-    "imagemUrl": "/img/projetos/atendimentos-veterinarios.png",
+    "imagemUrl": "/img/projetos/atendimentos-veterinarios.gif",
     "data": "2026-10"
   },
   {
     "nome": "Portfólio Profissional",
     "contexto": "Desenvolvimento de Interações e Aplicações Web · PUC Minas",
-    "descricao": "Este site: portfólio bilíngue com linha do tempo de projetos, experiências e formulário de contato com envio de e-mail, renderizado no servidor com Spring Boot.",
-    "tecnologias": ["Java", "Spring Boot", "Thymeleaf", "JavaScript", "CSS", "Resend"],
+    "descricao": "Este site: portfólio bilíngue com linha do tempo de projetos, experiências e formulário de contato com envio de e-mail, renderizado no servidor com Spring Boot e publicado no Render em um contêiner Docker.",
+    "tecnologias": ["Java", "Spring Boot", "Thymeleaf", "JavaScript", "CSS", "Resend", "Docker"],
     "repositorioUrl": "https://github.com/FelipeFonseca2/DIAW-Portfolio",
-    "imagemUrl": "/img/projetos/portfolio.png",
+    "siteUrl": "https://diaw-portfolio.onrender.com",
+    "imagemUrl": "/img/projetos/portfolio.gif",
     "data": "2026-10"
   }
 ]

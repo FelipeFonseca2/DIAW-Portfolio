@@ -50,7 +50,7 @@ class ContatoControllerTests {
 	@Test
 	void envioValidoMandaEmailERedireciona() throws Exception {
 		mockMvc.perform(envioValido())
-				.andExpect(redirectedUrl("/contato"))
+				.andExpect(redirectedUrl("/contato#formulario"))
 				.andExpect(flash().attributeExists("sucesso"));
 		verify(emailService).enviarContato(any(ContatoForm.class));
 	}
@@ -78,7 +78,7 @@ class ContatoControllerTests {
 	@Test
 	void honeypotPreenchidoNaoEnviaEmail() throws Exception {
 		mockMvc.perform(envioValido().param("website", "http://spam.example"))
-				.andExpect(redirectedUrl("/contato"))
+				.andExpect(redirectedUrl("/contato#formulario"))
 				.andExpect(flash().attributeExists("sucesso"));
 		verify(emailService, never()).enviarContato(any());
 	}
@@ -88,7 +88,7 @@ class ContatoControllerTests {
 		doThrow(new EmailException("falha")).when(emailService).enviarContato(any());
 
 		mockMvc.perform(envioValido())
-				.andExpect(redirectedUrl("/contato"))
+				.andExpect(redirectedUrl("/contato#formulario"))
 				.andExpect(flash().attributeExists("erro"))
 				.andExpect(flash().attributeExists("contatoForm"));
 	}
